@@ -1,3 +1,4 @@
+
 name: Build ReceiptScan APK
 
 on:
@@ -21,19 +22,19 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
+      - name: Extract project
+        run: unzip -o ReceiptScan_Camera_GoogleSheets_Project.zip
+
+      - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK components
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Install SDK components
+        run: yes | sdkmanager --licenses; sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-
-      - name: Extract project
-        run: unzip -o ReceiptScan_Camera_GoogleSheets_Project.zip
 
       - name: Build debug APK
         working-directory: ReceiptScan
