@@ -23,11 +23,11 @@ jobs:
           java-version: '17'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          accept-android-sdk-licenses: true
 
-      - name: Install Android SDK components
-        run: |
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
 
       - name: Extract project
         run: unzip -o ReceiptScan_Camera_GoogleSheets_Project.zip
